@@ -16,11 +16,18 @@ supported.versions=9 - 15
 supported.patchlevels=
 '; } # end properties
 
+### AnyKernel install
+## boot files attributes
+boot_attributes() {
+set_perm_recursive 0 0 755 644 $RAMDISK/*;
+set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
+} # end attributes
 
 # shell variables
-block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;
+BLOCK=/dev/block/bootdevice/by-name/boot;
 is_slot_device=1;
 ramdisk_compression=auto;
+PATCH_VBMETA_FLAG=auto;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
@@ -30,8 +37,8 @@ ramdisk_compression=auto;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
-set_perm_recursive 0 0 755 644 $ramdisk/*;
-set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
+# set_perm_recursive 0 0 755 644 $ramdisk/*;
+# set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
 
 
 ## AnyKernel boot install
